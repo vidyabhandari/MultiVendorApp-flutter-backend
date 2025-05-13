@@ -42,7 +42,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 
 const verifyVendor = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.userType === "Admin" || req.user.userType === "Vendor") {
+    if (["Admin", "Vendor", "Client"].includes(req.user.userType)) {
       next();
     } else {
       return res

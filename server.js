@@ -29,7 +29,7 @@ app.use("/api/foods", FoodRoute);
 app.use("/api/rating", RatingRoute);
 app.use("/api/address", AddressRoute);
 app.use("/api/cart", CartRoute);
-app.use("/api/order",OrderRoute)
+app.use("/api/order",OrderRoute);
 
 app.listen(process.env.PORT || 6013, () =>
   console.log(`Foodly Backend is running on port ${process.env.PORT}!`)
