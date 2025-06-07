@@ -105,14 +105,13 @@ module.exports = {
 
   //Restaurant Menu
   getFoodsByRestaurant: async (req, res) => {
-    const id = req.params.id;
-
+    const id = req.params.id; // still a string
     try {
-      const foods = await Food.find({ restaurant: id });
-
-      res.status(200).json(foods);
+      const restaurantId = new mongoose.Types.ObjectId(id);
+      const foods = await Food.find({ restaurant: restaurantId });
+      return res.status(200).json(foods);
     } catch (error) {
-      res.status(200).json({ status: false, message: error.message });
+      return res.status(500).json({ status: false, message: error.message });
     }
   },
 
