@@ -1,6 +1,8 @@
 const Food = require("../models/Food");
 
 module.exports = {
+
+  //Add food
   addFood: async (req, res) => {
     const {
       title,
@@ -48,6 +50,7 @@ module.exports = {
     }
   },
 
+  //get food by id
   getFoodById: async (req, res) => {
     const { id } = req.params;
     try {
@@ -59,6 +62,7 @@ module.exports = {
     }
   },
 
+  //get random foods
   getRandomFood: async (req, res) => {
     try {
       let randomFoodList = [];
@@ -91,6 +95,7 @@ module.exports = {
     }
   },
 
+  //get all foods by code
   getAllFoodsByCode: async (req, res) => {
     const code = req.params.code;
 
@@ -115,6 +120,7 @@ module.exports = {
     }
   },
 
+  //get foods by category and code
   getFoodsByCategoryAndCode: async (req, res) => {
     const { category, code } = req.params;
 
@@ -135,6 +141,7 @@ module.exports = {
     }
   },
 
+  //search foods
   searchFoods: async (req, res) => {
     const search = req.params.search;
 
@@ -159,6 +166,7 @@ module.exports = {
     }
   },
 
+  //get random foods by category and code
   getRandomFoodsByCategoryAndCode: async (req, res) => {
     const { category, code } = req.params;
 
