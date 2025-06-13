@@ -105,7 +105,7 @@ module.exports = {
           .json({ status: false, message: "Wrong Password" });
       }
 
-      const usertoken = jwt.sign(
+      const userToken = jwt.sign(
         {
           id: user._id,
           userType: user.userType,
@@ -117,7 +117,7 @@ module.exports = {
 
       const { password, createdAt, updatedAt, __v, otp, ...others } = user._doc;
 
-      res.status(200).json({ ...others, usertoken });
+      res.status(200).json({ ...others, userToken });
     } catch (error) {
       res.status(500).json({ status: false, message: error.message });
     }
