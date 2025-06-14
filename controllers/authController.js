@@ -6,7 +6,7 @@ const sendMail = require("../utils/smtp_function");
 
 module.exports = {
   createUser: async (req, res) => {
-    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!emailRegex.test(req.body.email)) {
       return res
@@ -14,8 +14,9 @@ module.exports = {
         .json({ status: false, message: "Email is not valid" });
     }
 
-    const minPasswordLength = 6;
-    if (!req.body.password || req.body.password.length < minPasswordLength) {
+    const minPasswordLength = 8;
+
+    if (req.body.password < minPasswordLength) {
       return res.status(400).json({
         status: false,
         message:
@@ -63,8 +64,9 @@ module.exports = {
       res.status(500).json({ status: false, message: error.message });
     }
   },
+
   loginUser: async (req, res) => {
-    const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!emailRegex.test(req.body.email)) {
       return res
@@ -74,7 +76,7 @@ module.exports = {
 
     const minPasswordLength = 6;
 
-    if (!req.body.password || req.body.password.length < minPasswordLength) {
+    if (req.body.password < minPasswordLength) {
       return res.status(400).json({
         status: false,
         message:
