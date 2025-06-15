@@ -16,7 +16,7 @@ module.exports = {
 
     const minPasswordLength = 8;
 
-    if (req.body.password < minPasswordLength) {
+    if (req.body.password.length < minPasswordLength) {
       return res.status(400).json({
         status: false,
         message:
@@ -74,9 +74,9 @@ module.exports = {
         .json({ status: false, message: "Email is not valid" });
     }
 
-    const minPasswordLength = 6;
+    const minPasswordLength = 8;
 
-    if (req.body.password < minPasswordLength) {
+    if (req.body.password.length < minPasswordLength) {
       return res.status(400).json({
         status: false,
         message:
@@ -106,6 +106,10 @@ module.exports = {
           .status(400)
           .json({ status: false, message: "Wrong Password" });
       }
+
+      console.log("Stored password:", user.password);
+      console.log("Decrypted password:", depassword);
+      console.log("Entered password:", req.body.password);
 
       const userToken = jwt.sign(
         {

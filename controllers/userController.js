@@ -42,7 +42,7 @@ module.exports = {
           { expiresIn: "21d" }
         );
 
-        const { password, __v, otp, createdAt, ...other } = user._doc;
+        const { password, __v, otp, createdAt, ...others } = user._doc;
         res.status(200).json({ ...others, userToken });
       } else {
         return res
